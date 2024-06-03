@@ -15,14 +15,22 @@ export default function ListItem({result}) {
                         <span onClick={(e) => {
                             fetch('/api/post/delete', {
                                 method: 'delete',
-                                body: JSON.stringify(list._id)
-                            }).then((r) => r.json()
-                            ).then(() => {
+                                body: JSON.stringify(list)
+                            }).then((r) => {
+                                if (r.ok) {
+                                    return r.json();
+                                } else {
+                                    throw new Error('삭제 실패');
+                                }
+                            }).then(() => {
                                 e.target.parentElement.style.opacity = 0;
                                 setTimeout(() => {
                                     e.target.parentElement.style.display= 'none'
                                 },1000)
-                            })
+                            }).catch((error) => {
+                                alert('누구냐');
+                                console.error(error);
+                            });
                         }}>삭제하기🗑️</span>
                     </div>
                 )

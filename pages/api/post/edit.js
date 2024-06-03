@@ -3,10 +3,9 @@ import {ObjectId} from "mongodb";
 
 export default async function handler(req, res) {
 
-    const client = await connectDB;
-    const db = client.db("forum")
-
     if(req.method == 'POST') {
+        const client = await connectDB;
+        const db = client.db("forum")
         if(req.body.title == '' || req.body.content == '') {
             return res.status(500).json('내용을 입력해 주라주');
         }
