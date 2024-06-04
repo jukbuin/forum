@@ -70,3 +70,22 @@ button {
 span {
     margin-left: 10px;
 }
+
+.comment {
+    margin: 15px 0;
+}
+
+.comment_area {
+    display: inline-block;
+    margin-right: 20px;
+    width: 500px;
+}
+
+.detail_title {
+    display: inline-block;
+}
+
+.detail_author_name {
+    display: inline-block;
+    margin-right: 5px;
+}
