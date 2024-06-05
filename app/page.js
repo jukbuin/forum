@@ -11,6 +11,8 @@ export default async function Home() {
     // await fetch('/URL', {next : {revalidate : 60}})
 
     return (
-        <div>안녕</div>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height : '100vh'}}>
+            <img src="/mainPage.png"/>
+        </div>
     );
 }

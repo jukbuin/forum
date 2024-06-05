@@ -6,6 +6,10 @@ import {ObjectId} from "mongodb";
 export default async function handler(req, res) {
     let session = await getServerSession(req, res, authOptions)
 
+    if (!session) {
+        return res.status(401).json('로그인이 필요합니다.');
+    }
+
     if (req.method == 'POST') {
         req.body = JSON.parse(req.body);
         if (session) {
@@ -24,7 +28,7 @@ export default async function handler(req, res) {
             const client = await connectDB;
             const db = client.db("forum")
 
-            if (save.content == '' || save.author == '') {
+            if (save.content == '') {
                 return res.status(500).json('내용을 입력하거나 로그인을 해라');
             } else {
                await db.collection('comment').insertOne(save);
