@@ -5,6 +5,18 @@ import {useEffect, useState} from "react";
 export default function Comment(props) {
     let [content, setContent] = useState('')
     let [comments, setComments] = useState([]);
+    let [session, setSession] = useState(null);
+
+    useEffect(() => {
+        fetch('/api/auth/session')
+            .then((r) => {
+                if (r.status === 200) return r.json();
+                return null;
+            })
+            .then((session) => {
+                setSession(session);
+            });
+    }, []);
 
     useEffect(() => {
         fetch(`/api/comment/list?id=${props._id}`).then(r => r.json()).then((result) => {
@@ -21,7 +33,35 @@ export default function Comment(props) {
                 comments.length > 0 ?
                     comments.map((list, i) =>
                         <div className="comment" key={i}>
-                            <p>{list.author_name} ({list.created_at})</p>
+                            <p style={{display : "inline-block"}}>{list.author_name} ({list.created_at})</p>
+                            {session && session.user.email === list.author && (
+                                <>
+                            <span style={{marginLeft : 30, cursor : "pointer"}}
+                                  onClick={(e) => {
+                                      fetch('/api/comment/delete', {
+                                          method: 'DELETE',
+                                          body: JSON.stringify(list),
+                                      })
+                                          .then((r) => {
+                                              if (r.ok) {
+                                                  return r.json();
+                                              } else {
+                                                  throw new Error('삭제 실패');
+                                              }
+                                          })
+                                          .then(() => {
+                                              e.target.parentElement.style.opacity = 0;
+                                              setTimeout(() => {
+                                                  e.target.parentElement.style.display = 'none';
+                                              }, 1000);
+                                          })
+                                          .catch((error) => {
+                                              alert('삭제할 권한이 없습니다.');
+                                              console.error(error);
+                                          });
+                                  }}>🗑️</span>
+                                </>
+                            )}
                             <p>{list.content}</p>
                             <hr></hr>
                         </div>

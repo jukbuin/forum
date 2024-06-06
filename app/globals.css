@@ -105,6 +105,8 @@ span {
 
 .comment {
     margin: 15px 0;
+    opacity: 1;
+    transition: all 1s;
 }
 
 .comment_area {
