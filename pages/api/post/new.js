@@ -12,6 +12,7 @@ export default async function handler(req, res) {
         req.body.author_name = session.user.name
         req.body.created_at = formattedDate
     }
+    console.log("req.body : ",req.body)
 
     if(req.method == 'POST') {
         const client = await connectDB;
