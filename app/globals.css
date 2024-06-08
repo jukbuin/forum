@@ -82,6 +82,7 @@ button {
     border: none;
     border-radius: 5px;
     color: #fff3e0;
+    cursor: pointer;
 }
 
 .navbar {
@@ -111,9 +112,7 @@ span {
 
 .comment_area {
     display: inline-block;
-    /*margin-right: 20px;*/
     width: 500px;
-    /*margin-bottom: 10px;*/
     margin: 10px 20px 10px 0;
 }
 
@@ -135,3 +134,37 @@ hr {
     margin-left: 20px;
     margin-top: 30px;
 }
+
+.dark-mode {
+    color: #fff3e0;
+    background-color: #3e2723;
+}
+
+.dark-mode > .navbar {
+    background: #8d6e63;
+}
+
+.dark-mode > .navbar > a {
+    color: #fff3e0;
+}
+
+body.dark-mode button {
+    background-color: #fff3e0;
+    color: #8d6e63;
+}
+
+body.dark-mode .list-item {
+    background: #8d6e63;
+    box-shadow: #80655B 0px 2px 4px 0px;
+}
+body.dark-mode .list-item > p {
+    color: #D9D3CA;
+}
+
+body.dark-mode hr {
+    border-top: 2px dotted #fff3e0;
+}
+
+
+
+

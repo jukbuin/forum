@@ -1,9 +1,11 @@
 import "./globals.css";
 import Link from "next/link";
-import LoginBtn from "@/app/LoginBtn";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/pages/api/auth/[...nextauth]";
-import LogOutBtn from "@/app/LogOutBtn";
+import {LoginBtn, LogOutBtn} from "@/app/LoginBtn";
+import {cookies} from "next/headers";
+import DarkMode from "@/app/DarkMode";
+
 
 export const metadata = {
     title: "Create Next App",
@@ -15,9 +17,13 @@ export const metadata = {
 
 export default async function RootLayout({children}) {
     let session = await getServerSession(authOptions)
+
+    let res = cookies().get('mode')
+    console.log(res.value)
+
     return (
         <html lang="en">
-        <body>
+        <body className={ res != undefined &&res.value == 'dark' ? "dark-mode" : ''}>
         <div className="navbar">
             <Link href="/" className="logo"><img src="/cookie.png" style={{width : 21.33, height : 21.33}}/> 먹킷리스트</Link>
             <Link href="/list">List</Link>
@@ -26,7 +32,7 @@ export default async function RootLayout({children}) {
             {
                 session == null ? <LoginBtn/> : <span>{session.user.name}님&nbsp;&nbsp; <LogOutBtn/></span>
             }
-
+            <DarkMode/>
         </div>
         {children}
         </body>
