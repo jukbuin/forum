@@ -1,6 +1,7 @@
 import {connectDB} from "@/util/database";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/pages/api/auth/[...nextauth]";
+import {revalidatePath} from "next/cache";
 
 export default async function handler(req, res) {
     let session = await getServerSession(req, res, authOptions)
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
         req.body.author_name = session.user.name
         req.body.created_at = formattedDate
     }
-    console.log("req.body : ",req.body)
+    // console.log("req.body : ",req.body)
 
     if(req.method == 'POST') {
         const client = await connectDB;

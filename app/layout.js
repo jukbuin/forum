@@ -19,7 +19,7 @@ export default async function RootLayout({children}) {
     let session = await getServerSession(authOptions)
 
     let res = cookies().get('mode')
-    console.log(res.value)
+    // console.log(res.value)
 
     return (
         <html lang="en">

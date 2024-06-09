@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                 author_name: session.user.name,
                 created_at: formattedDate
             }
-            console.log(session)
+            // console.log(session)
 
             const client = await connectDB;
             const db = client.db("forum")
