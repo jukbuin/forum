@@ -5,7 +5,7 @@ export async function middleware(req) {
     const session = await getToken({req : req})
     if(req.nextUrl.pathname.startsWith('/write')) {
         if (session == null) {
-            return NextResponse.redirect('http://mukkitlist-env.eba-uuhabuji.ap-northeast-2.elasticbeanstalk.com/api/auth/signin')
+            return NextResponse.redirect('http://mukkitlist-env.eba-awgiwhjf.ap-northeast-2.elasticbeanstalk.com/api/auth/signin')
         }
     }
 
