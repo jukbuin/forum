@@ -1,4 +1,5 @@
-# 🍪먹킷리스트🍪
+# 🍪먹킷리스트🍪 ([바로가기](http://mukkitlist-env-1.eba-eibqczsi.ap-northeast-2.elasticbeanstalk.com))
+
 ## [프로젝트설명]
 
 ### 📅 프로젝트기간
