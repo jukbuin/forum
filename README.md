@@ -20,7 +20,7 @@
 #### DB
 - MongoDB
 #### Library, API
-- Next-auht
+- Next-auth
 - AWS S3
 - Google API
 #### Tools
